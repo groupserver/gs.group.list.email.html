@@ -20,8 +20,11 @@ from version import get_version
 name = 'gs.group.list.email.html'
 version = get_version()
 
-requires = ['setuptools',
-            'zope.viewlet']
+requires = [
+    'setuptools',
+    'zope.viewlet',
+    'gs.group.list.email.base',
+]
 
 with codecs.open('README.rst', encoding='utf-8') as f:
     long_description = f.read()
