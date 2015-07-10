@@ -14,4 +14,158 @@
            xmlns:browser="http://namespaces.zope.org/browser"
            i18n_domain="gs.group.list.email.html">
 
+  <!--The page itself-->
+  <browser:page
+    name="html"
+    for="gs.group.list.email.base.interfaces.IPost"
+    class=".message.HTMLMessage"
+    template="browser/templates/page.pt"
+    permission="zope2.View" />
+  <!--The viewlet manager inside the page-->
+   <!--browser:viewletManager
+    name="groupserver.EmailHTMLMessage"
+    for="gs.group.list.email.base.interfaces.IPost"
+    provides=".interfaces.IHTMLMessage"
+    class="gs.viewlet.manager.WeightOrderedViewletManager"
+    template="browser/templates/simplemanager.pt"
+    permission="zope2.View" /-->
+
+   <!--=mpj17=-->
+   <!-- For reasons best known to themselves, the permissions-->
+   <!-- on following viewlets have to be "zope2.Public" -->
+   <!-- (rather than "zope2.View"). The security is provided -->
+   <!-- by the page and viewlet manager above. -->
+   <!---->
+   <!-- I *suspect* the issue has something to do with the -->
+   <!-- permissions that the system has when adding an -->
+   <!-- email to the system (rather than posting from the -->
+   <!-- Web). The hack works. In the future I should look -->
+   <!-- elevating the permissions when listing an email. -->
+
+  <!--========-->
+  <!--Preroll-->
+  <!--========-->
+
+   <!--browser:viewlet
+    name="gs-group-list-email-html-preroll"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IHTMLMessage"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/preroll.pt"
+    permission="zope2.Public"
+    weight="10"
+    title="Preroll" />
+  <browser:viewletManager
+    name="groupserver.EmailHTMLPreroll"
+    for="gs.group.list.email.base.interfaces.IPost"
+    provides=".interfaces.IPreroll"
+    class="gs.viewlet.manager.WeightOrderedViewletManager"
+    template="browser/templates/simplemanager.pt"
+    permission="zope2.Public" />
+
+   <browser:viewlet
+    name="gs-group-list-email-html-preroll-file"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IPreroll"
+    class=".files.FileNotice"
+    template="browser/templates/file-notice.pt"
+    permission="zope2.Public"
+    weight="10"
+    title="File notice" />
+   <browser:viewlet
+    name="gs-group-list-email-html-preroll-files"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IPreroll"
+    class=".files.Files Notice"
+    template="browser/templates/files-notice.pt"
+    permission="zope2.Public"
+    weight="10"
+    title="Files notice" /-->
+
+  <!--========-->
+  <!--Prologue-->
+  <!--========-->
+
+   <!--browser:viewlet
+    name="gs-group-list-email-html-prologue"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IHTMLMessage"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/prologue.pt"
+    permission="zope2.Public"
+    weight="20"
+    title="Prologue" /-->
+
+  <!--====-->
+  <!--Body-->
+  <!--====-->
+
+  <!--browser:viewlet
+    name="gs-group-list-email-html-body"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IHTMLMessage"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/body.pt"
+    permission="zope2.Public"
+    weight="30"
+    title="Body" />
+  <browser:viewletManager
+    name="groupserver.EmailHTMLBody"
+    for="gs.group.list.email.base.interfaces.IPost"
+    provides=".interfaces.IBody"
+    class="gs.viewlet.manager.WeightOrderedViewletManager"
+    template="browser/templates/simplemanager.pt"
+    permission="zope2.Public" />
+
+   <browser:viewlet
+    name="gs-group-list-email-html-body"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IBody"
+    class=".body.HTMLBody"
+    template="browser/templates/html-body.pt"
+    permission="zope2.Public"
+    weight="10"
+    title="HTML body" /-->
+
+  <!--========-->
+  <!--Appendix-->
+  <!--========-->
+
+  <!--browser:viewlet
+    name="gs-group-list-email-html-appendix"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IHTMLMessage"
+    class="gs.group.base.GroupViewlet"
+    template="browser/templates/appendix.pt"
+    permission="zope2.Public"
+    weight="40"
+    title="Appendix" />
+  <browser:viewletManager
+    name="groupserver.EmailHTMLAppendix"
+    for="gs.group.list.email.base.interfaces.IPost"
+    provides=".interfaces.IAppendix"
+    class="gs.viewlet.manager.WeightOrderedViewletManager"
+    template="browser/templates/simplemanager.pt"
+    permission="zope2.Public" />
+
+   <browser:viewlet
+    name="gs-group-list-email-html-appendix-files"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IAppendix"
+    class=".files.Files"
+    template="browser/templates/files.pt"
+    permission="zope2.Public"
+    weight="10"
+    title="Files" />
+
+   <browser:viewlet
+    name="gs-group-list-email-html-appendix-footer"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IAppendix"
+    class=".footer.Footer"
+    template="browser/templates/footer.pt"
+    permission="zope2.Public"
+    weight="20"
+    title="Footer" /-->
+
 </configure>

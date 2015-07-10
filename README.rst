@@ -40,6 +40,10 @@ appendix_::
   │┌HTML message viewlet manager─────────────────────┐│
   ││gs.group.list.email.html.interfaces.IHTMLMessage ││
   ││                                                 ││
+  ││┌Pre-roll viewlet manager───────────────────────┐││
+  │││gs.group.list.email.html.interfaces.IPreroll   │││
+  ││└───────────────────────────────────────────────┘││
+  ││                                                 ││
   ││┌Prologue viewlet manager───────────────────────┐││
   │││gs.group.list.email.html.interfaces.IPrologue  │││
   ││└───────────────────────────────────────────────┘││
@@ -54,25 +58,34 @@ appendix_::
   │└─────────────────────────────────────────────────┘│
   └───────────────────────────────────────────────────┘
 
+Pre-roll
+--------
+
+The pre-roll part of an HTML message is unformatted **hidden**
+text that appears before the rest of the message. It is picked up
+by email clients that use it for a **summary** of the message:
+think of it like a second subject-line.
+
+The *viewlet manager* ``groupserver.EmailHTMLPreroll``
+(``gs.group.list.email.html.interfaces.IPreroll``) is normally
+filled by the *File notice* viewlets.
+
+The **File notice** viewlets state that there is one or more
+files listed in the appendix_:
+
+* One (``gs-group-list-email-html-preroll-file``) provides a
+  short notice that there is *a* file listed in the appendix of a
+  message,
+
+* The other (``gs-group-list-email-html-preroll-files``) provides
+  a short notice that there are *multiple* files listed in the
+  appendix of a message.
+
 Prologue
 --------
 
 The prologue of a message appears at the top of the message body,
-but before the body_ proper. The *viewlet manager*
-``groupserver.EmailHTMLPrologue``
-(``gs.group.list.email.html.interfaces.IPrologue``) is normally
-filled by the *File notice* viewlets.
-
-The *File notice* viewlets state that there is one or more files
-listed in the appendix_:
-
-* One (``gs-group-list-email-html-prologue-file``) provides a
-  short notice that there is *a* file listed in the appendix of a
-  message, 
-
-* The other (``gs-group-list-email-html-prologue-files``)
-  provides a short notice that there are *multiple* files listed
-  in the appendix of a message.
+but before the body_ proper.
 
 Body
 ----
