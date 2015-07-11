@@ -1,12 +1,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal">
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="context/@@groupserver_email_layout/page">
   <head>
-    <title>Email</title>
+    <title metal:fill-slot="title">Notification:
+      <span tal:replace="view/siteInfo/name">Site</span></title>
   </head>
   <body>
-    <div id="a-page">
-      <p>I am a post, honest.</p>
+    <div metal:fill-slot="body">
+      <p tal:content="view/siteInfo/url">I am an email, honest.</p>
     </div><!--a-page-->
   </body>
 </html>
