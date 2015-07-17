@@ -7,6 +7,14 @@
       <span tal:replace="view/siteInfo/name">Site</span></title>
   </head>
   <body>
+    <tal:block metal:fill-slot="preheader"
+               tal:condition="not:view/author/anonymous">
+      <tal:block content="view/author/name">Someone</tal:block>
+      posted to
+      <tal:block content="view/groupInfo/name">this group</tal:block>
+      on
+      <tal:block content="view/siteInfo/name">this site</tal:block>
+    </tal:block>
     <div metal:fill-slot="body">
       <p tal:content="view/groupInfo/url">I am an email, honest.</p>
     </div><!--a-page-->

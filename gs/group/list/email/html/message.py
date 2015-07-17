@@ -13,6 +13,8 @@
 #
 ############################################################################
 from __future__ import absolute_import, unicode_literals, print_function
+from zope.cachedescriptors.property import Lazy
+from zope.component import createObject
 from gs.content.email.base import (GroupEmail)
 
 
@@ -27,3 +29,10 @@ Mostly this class exists just to set the correct headers. The heavy-lifting
 is done by the viewlets.'''
     def __init__(self, post, request):
         super(HTMLMessage, self).__init__(post, request)
+
+    @Lazy
+    def author(self):
+        'The person who authored the post'
+        retval = createObject('groupserver.UserFromId',
+                              self.groupInfo.groupObj, self.context.post['user_id'])
+        return retval
