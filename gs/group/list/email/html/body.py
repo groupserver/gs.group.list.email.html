@@ -13,6 +13,7 @@
 #
 ############################################################################
 from __future__ import absolute_import, unicode_literals
+from xml.sax.saxutils import escape
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject
 from gs.group.list.email.base import EmailMessageViewlet
@@ -42,12 +43,31 @@ class MetadataViewlet(EmailMessageViewlet):
 
 class BodyViewlet(EmailMessageViewlet):
     'The viewlet for the actual message body'
+    HTML_ESCAPE_TABLE = {
+        '"': "&quot;",
+        "'": "&apos;"
+    }
 
     @Lazy
     def post(self):
         retval = self.context.post
         return retval
 
-    def lines(self):
-        retval = ''
+    @classmethod
+    def markup(cls, line):
+        if line.strip() == '':
+            r = '&#160;{0}'
+        elif line.lstrip()[0] == '>':
+            r = '<span class="line muted">{0}</span></br>'
+        else:
+            r = '<span class="line">{0}</span><br/>'
+        l = escape(line.rstrip(), cls.HTML_ESCAPE_TABLE)
+        #  <https://wiki.python.org/moin/EscapingHtml>
+        retval = r.format(l)
         return retval
+
+    def lines(self):
+        lines = self.post['body'].split('\n')
+        for line in lines:
+            retval = self.markup(line)
+            yield retval

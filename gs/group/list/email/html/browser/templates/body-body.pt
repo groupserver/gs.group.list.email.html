@@ -2,5 +2,11 @@
        xmlns:tal="http://xml.zope.org/namespaces/tal"
        align="center" border="0" cellpadding="0" cellspacing="0"
        width="100%">
-  Body
+  <tr>
+    <td>
+      <tal:block repeat="line view/lines">
+        <tal:block content="structure line"/>
+      </tal:block>
+    </td>
+  </tr>
 </table>
