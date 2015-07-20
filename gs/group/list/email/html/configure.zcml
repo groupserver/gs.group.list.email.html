@@ -93,7 +93,7 @@
     name="gs-group-list-email-html-prologue"
     for="gs.group.list.email.base.interfaces.IPost"
     manager=".interfaces.IHTMLMessage"
-    class="gs.group.base.GroupViewlet"
+    class=".prologue.PrologueViewlet"
     template="browser/templates/prologue.pt"
     permission="zope2.Public"
     weight="10"
