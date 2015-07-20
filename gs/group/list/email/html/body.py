@@ -25,6 +25,7 @@ class MetadataViewlet(EmailMessageViewlet):
     @Lazy
     def post(self):
         retval = self.context.post
+        retval['url'] = '{0}/r/post/{1}'.format(self.siteInfo.url, retval['post_id'])
         return retval
 
     @Lazy

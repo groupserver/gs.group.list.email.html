@@ -12,10 +12,20 @@
     <td>
       <table id="gs-group-list-email-html-body-metadata-text">
         <tr>
-          <td><h2 tal:content="view/post/subject">Subject</h2></td>
+          <td>
+            <h2>
+              <a href="#"
+                 tal:attributes="href view/post/url"
+                 tal:content="view/post/subject">Subject</a>
+            </h2>
+          </td>
         </tr>
         <tr>
-          <td><b tal:content="view/author/name">A. Person</b></td>
+          <td>
+            <a tal:attributes="href string:${view/siteInfo/url}${view/author/url}"
+               href="#"><b tal:content="view/author/name">A. Person</b>
+            </a>
+          </td>
         </tr>
         <tr>
           <td>
