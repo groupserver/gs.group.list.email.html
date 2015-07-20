@@ -1,0 +1,10 @@
+<div id="gs-group-list-email-html-prologue"
+     xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <h2>
+    Post to
+    <!--a href="#" class="group"
+       tal:attributes="href view/groupInfo/url"
+       tal:content="view/groupInfo/name">This group</a>
+    <a href="view/leaveLink">Leave?</a-->
+  </h2>
+</div>

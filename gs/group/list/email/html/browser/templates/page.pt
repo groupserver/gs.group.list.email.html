@@ -3,20 +3,23 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       metal:use-macro="context/@@groupserver_email_layout/page">
   <head>
-    <title metal:fill-slot="title">Notification:
-      <span tal:replace="view/siteInfo/name">Site</span></title>
+    <title metal:fill-slot="title">
+      <tal:block condition="not:view/author/anonymous">Post by
+        <tal:block content="view/author/name">A. Person</tal:block>:
+      </tal:block>
+      <tal:block content="view/post/subject">this topic</tal:block>:
+      <tal:block content="view/groupInfo/name">this group</tal:block>:
+      <span tal:replace="view/siteInfo/name">Site</span>
+    </title>
   </head>
   <body>
     <tal:block metal:fill-slot="preheader"
-               tal:condition="not:view/author/anonymous">
-      <tal:block content="view/author/name">Someone</tal:block>
-      posted to
-      <tal:block content="view/groupInfo/name">this group</tal:block>
-      on
-      <tal:block content="view/siteInfo/name">this site</tal:block>
+               tal:content="structure provider:groupserver.EmailHTMLPreroll">
+      The bit of the email that appears before the body
     </tal:block>
-    <div metal:fill-slot="body">
-      <p tal:content="view/groupInfo/url">I am an email, honest.</p>
+    <div metal:fill-slot="body"
+         tal:content="structure provider:groupserver.EmailHTML">
+      The email body.
     </div><!--a-page-->
   </body>
 </html>

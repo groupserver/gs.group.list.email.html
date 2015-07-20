@@ -16,6 +16,7 @@ from __future__ import absolute_import, unicode_literals, print_function
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject
 from gs.content.email.base import (GroupEmail)
+from Products.GSGroup.interfaces import (IGSMailingListInfo)
 
 
 class HTMLMessage(GroupEmail):
@@ -31,8 +32,24 @@ is done by the viewlets.'''
         super(HTMLMessage, self).__init__(post, request)
 
     @Lazy
+    def post(self):
+        retval = self.context.post
+        return retval
+
+    @Lazy
     def author(self):
         'The person who authored the post'
         retval = createObject('groupserver.UserFromId',
-                              self.groupInfo.groupObj, self.context.post['user_id'])
+                              self.groupInfo.groupObj, self.post['user_id'])
+        return retval
+
+    @Lazy
+    def listInfo(self):
+        retval = IGSMailingListInfo(self.groupInfo.groupObj)
+        return retval
+
+    @Lazy
+    def leaveLink(self):
+        emailAddr = self.listInfo.get_property('mailto')
+        retval = 'mailto:{0}?Subject=Unsubscribe'.format(emailAddr)
         return retval

@@ -21,14 +21,6 @@
     class=".message.HTMLMessage"
     template="browser/templates/page.pt"
     permission="zope2.View" />
-  <!--The viewlet manager inside the page-->
-   <!--browser:viewletManager
-    name="groupserver.EmailHTMLMessage"
-    for="gs.group.list.email.base.interfaces.IPost"
-    provides=".interfaces.IHTMLMessage"
-    class="gs.viewlet.manager.WeightOrderedViewletManager"
-    template="browser/templates/simplemanager.pt"
-    permission="zope2.View" /-->
 
    <!--=mpj17=-->
    <!-- For reasons best known to themselves, the permissions-->
@@ -45,16 +37,6 @@
   <!--========-->
   <!--Preroll-->
   <!--========-->
-
-   <!--browser:viewlet
-    name="gs-group-list-email-html-preroll"
-    for="gs.group.list.email.base.interfaces.IPost"
-    manager=".interfaces.IHTMLMessage"
-    class="gs.group.base.GroupViewlet"
-    template="browser/templates/preroll.pt"
-    permission="zope2.Public"
-    weight="10"
-    title="Preroll" />
   <browser:viewletManager
     name="groupserver.EmailHTMLPreroll"
     for="gs.group.list.email.base.interfaces.IPost"
@@ -62,13 +44,21 @@
     class="gs.viewlet.manager.WeightOrderedViewletManager"
     template="browser/templates/simplemanager.pt"
     permission="zope2.Public" />
-
+   <browser:viewlet
+    name="gs-group-list-email-html-preroll-nofile"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IPreroll"
+    class="gs.group.list.email.text.files.FileNotice"
+    template="browser/templates/preroll-nofile.pt"
+    permission="zope2.Public"
+    weight="10"
+    title="Preroll (no file)" />
    <browser:viewlet
     name="gs-group-list-email-html-preroll-file"
     for="gs.group.list.email.base.interfaces.IPost"
     manager=".interfaces.IPreroll"
-    class=".files.FileNotice"
-    template="browser/templates/file-notice.pt"
+    class="gs.group.list.email.text.files.FileNotice"
+    template="browser/templates/preroll-file.pt"
     permission="zope2.Public"
     weight="10"
     title="File notice" />
@@ -76,25 +66,38 @@
     name="gs-group-list-email-html-preroll-files"
     for="gs.group.list.email.base.interfaces.IPost"
     manager=".interfaces.IPreroll"
-    class=".files.Files Notice"
-    template="browser/templates/files-notice.pt"
+    class="gs.group.list.email.text.files.FilesNotice"
+    template="browser/templates/preroll-files.pt"
     permission="zope2.Public"
     weight="10"
-    title="Files notice" /-->
+    title="Files notice" />
+
+  <!--===================================-->
+  <!--The viewlet manager inside the page-->
+  <!--===================================-->
+
+   <browser:viewletManager
+    name="groupserver.EmailHTML"
+    for="gs.group.list.email.base.interfaces.IPost"
+    provides=".interfaces.IHTMLMessage"
+    class="gs.viewlet.manager.WeightOrderedViewletManager"
+    template="browser/templates/simplemanager.pt"
+    permission="zope2.View" />
+
 
   <!--========-->
   <!--Prologue-->
   <!--========-->
 
-   <!--browser:viewlet
+   <browser:viewlet
     name="gs-group-list-email-html-prologue"
     for="gs.group.list.email.base.interfaces.IPost"
     manager=".interfaces.IHTMLMessage"
     class="gs.group.base.GroupViewlet"
     template="browser/templates/prologue.pt"
     permission="zope2.Public"
-    weight="20"
-    title="Prologue" /-->
+    weight="10"
+    title="Prologue" />
 
   <!--====-->
   <!--Body-->
