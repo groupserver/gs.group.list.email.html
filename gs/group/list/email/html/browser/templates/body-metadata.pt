@@ -1,0 +1,34 @@
+<table id="gs-group-list-email-html-body-metadata"
+       xmlns:tal="http://xml.zope.org/namespaces/tal"
+       align="center" border="0" cellpadding="0" cellspacing="0"
+       width="100%">
+  <tr>
+    <td height="90" width="90" >
+      <img height="90" width="90" src="/" border="0"
+           alt="Profile photo"
+           tal:attributes="alt string:Photo of ${view/author/name};
+                           src view/profileImageUrl" />
+    </td>
+    <td>
+      <table id="gs-group-list-email-html-body-metadata-text">
+        <tr>
+          <td><h4 tal:content="view/post/subject">Subject</h4></td>
+        </tr>
+        <tr>
+          <td><b tal:content="view/author/name">A. Person</b></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="muted">Posted at</span>
+            <span class="date"
+                  tal:define="d view/post/date"
+                  tal:attributes="title view/post/date/isoformat"
+                  tal:content="python:d.strftime('%b %d, %Y')">
+              Today, Tomorrow, Timaru
+            </span>
+          </td>
+        </tr>
+      </table><!--gs-group-list-email-html-body-metadata-text-->
+    </td>
+  </tr>
+</table><!--gs-group-list-email-html-body-metadata-->

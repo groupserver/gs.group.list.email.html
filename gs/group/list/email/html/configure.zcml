@@ -103,14 +103,14 @@
   <!--Body-->
   <!--====-->
 
-  <!--browser:viewlet
+  <browser:viewlet
     name="gs-group-list-email-html-body"
     for="gs.group.list.email.base.interfaces.IPost"
     manager=".interfaces.IHTMLMessage"
     class="gs.group.base.GroupViewlet"
     template="browser/templates/body.pt"
     permission="zope2.Public"
-    weight="30"
+    weight="20"
     title="Body" />
   <browser:viewletManager
     name="groupserver.EmailHTMLBody"
@@ -121,14 +121,14 @@
     permission="zope2.Public" />
 
    <browser:viewlet
-    name="gs-group-list-email-html-body"
+    name="gs-group-list-email-html-body-metadata"
     for="gs.group.list.email.base.interfaces.IPost"
     manager=".interfaces.IBody"
-    class=".body.HTMLBody"
-    template="browser/templates/html-body.pt"
+    class=".body.MetadataViewlet"
+    template="browser/templates/body-metadata.pt"
     permission="zope2.Public"
     weight="10"
-    title="HTML body" /-->
+    title="HTML body metadata" />
 
   <!--========-->
   <!--Appendix-->

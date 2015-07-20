@@ -42,14 +42,3 @@ is done by the viewlets.'''
         retval = createObject('groupserver.UserFromId',
                               self.groupInfo.groupObj, self.post['user_id'])
         return retval
-
-    @Lazy
-    def listInfo(self):
-        retval = IGSMailingListInfo(self.groupInfo.groupObj)
-        return retval
-
-    @Lazy
-    def leaveLink(self):
-        emailAddr = self.listInfo.get_property('mailto')
-        retval = 'mailto:{0}?Subject=Unsubscribe'.format(emailAddr)
-        return retval

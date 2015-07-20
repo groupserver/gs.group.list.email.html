@@ -1,0 +1,4 @@
+<tal:block xmlns:tal="http://xml.zope.org/namespaces/tal"
+           content="structure provider:groupserver.EmailHTMLBody">
+  The body of the post
+</tal:block>
