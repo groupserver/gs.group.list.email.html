@@ -84,41 +84,40 @@
     template="browser/templates/simplemanager.pt"
     permission="zope2.View" />
 
-
-  <!--========-->
-  <!--Prologue-->
-  <!--========-->
+   <!--========-->
+   <!--Prologue-->
+   <!--========-->
 
    <browser:viewlet
-    name="gs-group-list-email-html-prologue"
-    for="gs.group.list.email.base.interfaces.IPost"
-    manager=".interfaces.IHTMLMessage"
-    class=".prologue.PrologueViewlet"
-    template="browser/templates/prologue.pt"
-    permission="zope2.Public"
-    weight="10"
-    title="Prologue" />
+     name="gs-group-list-email-html-prologue"
+     for="gs.group.list.email.base.interfaces.IPost"
+     manager=".interfaces.IHTMLMessage"
+     class=".prologue.PrologueViewlet"
+     template="browser/templates/prologue.pt"
+     permission="zope2.Public"
+     weight="10"
+     title="Prologue" />
 
-  <!--====-->
-  <!--Body-->
-  <!--====-->
+   <!--====-->
+   <!--Body-->
+   <!--====-->
 
-  <browser:viewlet
-    name="gs-group-list-email-html-body"
-    for="gs.group.list.email.base.interfaces.IPost"
-    manager=".interfaces.IHTMLMessage"
-    class="gs.group.base.GroupViewlet"
-    template="browser/templates/body.pt"
-    permission="zope2.Public"
-    weight="20"
-    title="Body" />
-  <browser:viewletManager
-    name="groupserver.EmailHTMLBody"
-    for="gs.group.list.email.base.interfaces.IPost"
-    provides=".interfaces.IBody"
-    class="gs.viewlet.manager.WeightOrderedViewletManager"
-    template="browser/templates/simplemanager.pt"
-    permission="zope2.Public" />
+   <browser:viewlet
+     name="gs-group-list-email-html-body"
+     for="gs.group.list.email.base.interfaces.IPost"
+     manager=".interfaces.IHTMLMessage"
+     class="gs.group.base.GroupViewlet"
+     template="browser/templates/body.pt"
+     permission="zope2.Public"
+     weight="20"
+     title="Body" />
+   <browser:viewletManager
+   name="groupserver.EmailHTMLBody"
+   for="gs.group.list.email.base.interfaces.IPost"
+   provides=".interfaces.IBody"
+   class="gs.viewlet.manager.WeightOrderedViewletManager"
+   template="browser/templates/simplemanager.pt"
+   permission="zope2.Public" />
 
    <browser:viewlet
     name="gs-group-list-email-html-body-metadata"
@@ -138,6 +137,17 @@
     permission="zope2.Public"
     weight="20"
     title="HTML body" />
+
+  <!--Files-->
+  <browser:viewlet
+    name="gs-group-list-email-html-files"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IBody"
+    class=".files.FilesListViewlet"
+    template="browser/templates/files.pt"
+    permission="zope2.Public"
+    weight="30"
+    title="Files" />
 
   <!--========-->
   <!--Appendix-->

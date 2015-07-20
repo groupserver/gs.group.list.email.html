@@ -1,0 +1,27 @@
+<table id="gs-group-list-email-html-files"
+       xmlns:tal="http://xml.zope.org/namespaces/tal"
+       align="center" border="0" cellpadding="0" cellspacing="0"
+       width="100%"
+       tal:define="filesMetadata view/post/files_metadata">
+  <tr>
+    <td tal:condition="python:len(filesMetadata) == 1">
+      <h4>One file</h4>
+    </td>
+    <td tal:condition="python:len(filesMetadata) != 1">
+      <h4>
+        <span tal:content="python:len(filesMetadata)">n</span> files
+      </h4>
+    </td>
+  </tr>
+  <tr tal:repeat="file filesMetadata">
+    <td>
+      <a tal:attributes="href string:${view/siteInfo/url}/r/file/${file/file_id}"
+         href="#"><b>&#128441;</b>
+        <span tal:content="file/file_name">File</span>
+      </a>
+      <span tal:define="size file/file_size"
+            class="muted">(<span
+            tal:content="python:view.file_size_format(size)">size</span>)</span>
+    </td>
+  </tr>
+</table><!--gs-group-list-email-html-files-->
