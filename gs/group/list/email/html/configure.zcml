@@ -129,6 +129,15 @@
     permission="zope2.Public"
     weight="10"
     title="HTML body metadata" />
+   <browser:viewlet
+    name="gs-group-list-email-html-body-body"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IBody"
+    class=".body.BodyViewlet"
+    template="browser/templates/body-body.pt"
+    permission="zope2.Public"
+    weight="20"
+    title="HTML body" />
 
   <!--========-->
   <!--Appendix-->

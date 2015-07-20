@@ -12,7 +12,7 @@
     <td>
       <table id="gs-group-list-email-html-body-metadata-text">
         <tr>
-          <td><h4 tal:content="view/post/subject">Subject</h4></td>
+          <td><h2 tal:content="view/post/subject">Subject</h2></td>
         </tr>
         <tr>
           <td><b tal:content="view/author/name">A. Person</b></td>
