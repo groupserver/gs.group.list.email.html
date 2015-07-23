@@ -106,37 +106,11 @@
      name="gs-group-list-email-html-body"
      for="gs.group.list.email.base.interfaces.IPost"
      manager=".interfaces.IHTMLMessage"
-     class="gs.group.base.GroupViewlet"
-     template="browser/templates/body.pt"
+     class=".body.BodyViewlet"
+     template="browser/templates/body-body.pt"
      permission="zope2.Public"
      weight="20"
-     title="Body" />
-   <browser:viewletManager
-   name="groupserver.EmailHTMLBody"
-   for="gs.group.list.email.base.interfaces.IPost"
-   provides=".interfaces.IBody"
-   class="gs.viewlet.manager.WeightOrderedViewletManager"
-   template="browser/templates/simplemanager.pt"
-   permission="zope2.Public" />
-
-   <browser:viewlet
-    name="gs-group-list-email-html-body-metadata"
-    for="gs.group.list.email.base.interfaces.IPost"
-    manager=".interfaces.IBody"
-    class=".body.MetadataViewlet"
-    template="browser/templates/body-metadata.pt"
-    permission="zope2.Public"
-    weight="10"
-    title="HTML body metadata" />
-   <browser:viewlet
-    name="gs-group-list-email-html-body-body"
-    for="gs.group.list.email.base.interfaces.IPost"
-    manager=".interfaces.IBody"
-    class=".body.BodyViewlet"
-    template="browser/templates/body-body.pt"
-    permission="zope2.Public"
-    weight="20"
-    title="HTML body" />
+     title="HTML body" />
 
   <!--Files-->
   <browser:viewlet

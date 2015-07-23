@@ -15,31 +15,7 @@
 from __future__ import absolute_import, unicode_literals
 from xml.sax.saxutils import escape
 from zope.cachedescriptors.property import Lazy
-from zope.component import createObject
 from gs.group.list.email.base import EmailMessageViewlet
-
-
-class MetadataViewlet(EmailMessageViewlet):
-    'The viewlet for the message metadata'
-
-    @Lazy
-    def post(self):
-        retval = self.context.post
-        retval['url'] = '{0}/r/post/{1}'.format(self.siteInfo.url, retval['post_id'])
-        return retval
-
-    @Lazy
-    def author(self):
-        'The person who authored the post'
-        retval = createObject('groupserver.UserFromId',
-                              self.groupInfo.groupObj, self.post['user_id'])
-        return retval
-
-    @Lazy
-    def profileImageUrl(self):
-        r = '{0}{1}/gs-profile-image-square/90'
-        retval = r.format(self.siteInfo.url, self.author.url)
-        return retval
 
 
 class BodyViewlet(EmailMessageViewlet):

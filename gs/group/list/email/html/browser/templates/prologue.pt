@@ -1,11 +1,47 @@
-<div id="gs-group-list-email-html-prologue"
-     xmlns:tal="http://xml.zope.org/namespaces/tal">
-  <h2>
-    Post to
-    <a href="#" class="group"
-       tal:attributes="href view/groupInfo/url"
-       tal:content="view/groupInfo/name">This group</a>
-    <a class="muted small" href="#"
-       tal:attributes="href view/leaveLink">Leave?</a>
-  </h2>
-</div>
+<table id="gs-group-list-email-html-body-metadata"
+       xmlns:tal="http://xml.zope.org/namespaces/tal"
+       align="center" border="0" cellpadding="0" cellspacing="0"
+       width="100%">
+  <tr>
+    <td height="90" width="90" valign="top">
+      <img height="90" width="90" src="/" border="0"
+           alt="Profile photo"
+           tal:attributes="alt string:Photo of ${view/author/name};
+                           src view/profileImageUrl" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table valign="top" id="gs-group-list-email-html-body-metadata-text">
+        <tr>
+          <td>
+            <h2>
+              Post in
+              <a href="#" class="group"
+                 tal:attributes="href view/groupInfo/url"
+                 tal:content="view/groupInfo/name">This group</a>
+              <a class="muted small" href="#"
+                 tal:attributes="href view/leaveLink">Leave?</a>
+            </h2>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h2>
+              <a href="#"
+                 tal:attributes="href view/post/url"
+                 tal:content="view/post/subject">Subject</a>
+            </h2>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a tal:attributes="href string:${view/siteInfo/url}${view/author/url}"
+               href="#"><b tal:content="view/author/name">A. Person</b>
+            </a>
+          </td>
+        </tr>
+      </table><!--gs-group-list-email-html-body-metadata-text-->
+    </td>
+  </tr>
+</table><!--gs-group-list-email-html-body-metadata-->
