@@ -4,17 +4,15 @@
        width="100%"
        tal:define="filesMetadata view/post/files_metadata">
   <tr>
-    <td tal:condition="python:len(filesMetadata) == 1">
-      <h4>One file</h4>
-    </td>
-    <td tal:condition="python:len(filesMetadata) != 1">
-      <h4>
+    <td>
+      <h3 tal:condition="python:len(filesMetadata) == 1">One file</h3>
+      <h3 tal:condition="python:len(filesMetadata) != 1">
         <span tal:content="python:len(filesMetadata)">n</span> files
-      </h4>
+      </h3>
     </td>
   </tr>
   <tr tal:repeat="file filesMetadata">
-    <td>
+    <td class="gs-group-list-email-html-files-file">
       <a tal:attributes="href string:${view/siteInfo/url}/r/file/${file/file_id}"
          href="#"><b>&#128441;</b>
         <span tal:content="file/file_name">File</span>
