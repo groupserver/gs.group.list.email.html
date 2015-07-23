@@ -116,7 +116,7 @@
   <browser:viewlet
     name="gs-group-list-email-html-files"
     for="gs.group.list.email.base.interfaces.IPost"
-    manager=".interfaces.IBody"
+     manager=".interfaces.IHTMLMessage"
     class=".files.FilesListViewlet"
     template="browser/templates/files.pt"
     permission="zope2.Public"
@@ -164,4 +164,13 @@
     weight="20"
     title="Footer" /-->
 
+  <!--CSS-->
+  <browser:viewlet
+    name="gs-group-list-email-html-css"
+    manager="gs.content.email.css.interfaces.IHTMLEmailStyle"
+    class="gs.viewlet.SiteViewlet"
+    template="browser/templates/css.pt"
+    title="HTML Email CSS"
+    weight="40"
+    permission="zope2.Public" />
 </configure>
