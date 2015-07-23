@@ -1,4 +1,4 @@
-<table id="gs-group-list-email-html-body-body"
+<table id="gs-group-list-email-html-body"
        xmlns:tal="http://xml.zope.org/namespaces/tal"
        align="center" border="0" cellpadding="0" cellspacing="0"
        width="100%">
