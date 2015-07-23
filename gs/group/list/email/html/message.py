@@ -16,7 +16,6 @@ from __future__ import absolute_import, unicode_literals, print_function
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject
 from gs.content.email.base import (GroupEmail)
-from Products.GSGroup.interfaces import (IGSMailingListInfo)
 
 
 class HTMLMessage(GroupEmail):

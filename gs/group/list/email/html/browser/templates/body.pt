@@ -9,4 +9,11 @@
       </tal:block>
     </td>
   </tr>
+  <tr tal:condition="view/readMore">
+    <td>
+      <a tal:attributes="href string:${view/post/url}"
+         class="small muted"
+         href="#">Rest of post&#8230;</a>
+    </td>
+  </tr>
 </table>
