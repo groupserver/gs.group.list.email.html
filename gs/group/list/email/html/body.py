@@ -44,7 +44,7 @@ class BodyViewlet(EmailMessageViewlet):
         return retval
 
     def lines(self):
-        lines = self.post['body'].split('\n')
+        lines = self.post['body'].rstrip().split('\n')
         for line in lines:
             retval = self.markup(line)
             yield retval
