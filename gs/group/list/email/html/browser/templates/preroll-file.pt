@@ -1,6 +1,6 @@
 <tal:block
   xmlns:tal="http://xml.zope.org/namespaces/tal">&#8213; 1 file &#8213;
-  A post to
+  A post in
   <tal:block content="view/groupInfo/name">this group</tal:block>
   on
   <tal:block content="view/siteInfo/name">this site</tal:block>
