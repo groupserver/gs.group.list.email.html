@@ -22,8 +22,20 @@ version = get_version()
 
 requires = [
     'setuptools',
+    'zope.browserpage',
+    'zope.cachedescriptors',
+    'zope.component',
+    'zope.tal',
+    'zope.tales',
     'zope.viewlet',
+    'gs.content.email.css',
+    'gs.content.email.layout',
+    'gs.core',
+    'gs.group.base',
     'gs.group.list.email.base',
+    'gs.group.list.email.text',
+    'gs.group.messages.post',
+    'gs.viewlet',
 ]
 
 with codecs.open('README.rst', encoding='utf-8') as f:
