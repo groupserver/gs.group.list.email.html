@@ -15,7 +15,7 @@
 from __future__ import absolute_import, unicode_literals, print_function
 from email.mime.text import MIMEText
 from zope.cachedescriptors.property import Lazy
-from zope.component import createObject
+from zope.component import (createObject, getMultiAdapter)
 from gs.content.email.base import (GroupEmail)
 
 
@@ -28,6 +28,7 @@ class HTMLMessage(GroupEmail):
 
 Mostly this class exists just to set the correct headers. The
 heavy-lifting is done by the viewlets.'''
+
     def __init__(self, post, request):
         super(HTMLMessage, self).__init__(post, request)
 
@@ -43,6 +44,16 @@ heavy-lifting is done by the viewlets.'''
                               self.groupInfo.groupObj, self.post['user_id'])
         return retval
 
+
+class HTMLMessagePart(object):
+    '''The HTML-message a part, that can be used to make an email'''
+    #: The weight, used for sorting the different message-types
+    weight = 20
+
+    def __init__(self, post, request):
+        self.post = self.context = post
+        self.request = request
+
     def as_email(self):
         '''The HTML message as an email-component
 
@@ -50,6 +61,8 @@ heavy-lifting is done by the viewlets.'''
           form of the post. The MIME-type of the message is
           :mimetype:`text/html`, and the encoding is UTF-8.
 :rtype: :class:`email.mime.text.MIMEText`'''
-        html = self()
+        # Normally the htmlMessage is a HTMLMessage, above.
+        htmlMessage = getMultiAdapter((self.context, self.request), name="html")
+        html = htmlMessage()
         retval = MIMEText(html, 'html', 'utf-8')
         return retval

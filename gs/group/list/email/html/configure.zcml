@@ -22,6 +22,18 @@
     template="browser/templates/page.pt"
     permission="zope2.View" />
 
+  <!--The html-message as a IMessagePart-->
+  <class class=".message.HTMLMessagePart">
+    <implements
+      interface="gs.group.list.email.base.interfaces.IMessagePart" />
+  </class>
+  <adapter
+    name="html"
+    for="gs.group.list.email.base.interfaces.IPost
+         zope.publisher.interfaces.browser.IBrowserRequest"
+    provides="gs.group.list.email.base.interfaces.IMessagePart"
+    factory=".message.HTMLMessagePart" />
+
    <!--=mpj17=-->
    <!-- For reasons best known to themselves, the permissions-->
    <!-- on following viewlets have to be "zope2.Public" -->
