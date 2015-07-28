@@ -135,47 +135,6 @@
     weight="30"
     title="Files" />
 
-  <!--========-->
-  <!--Appendix-->
-  <!--========-->
-
-  <!--browser:viewlet
-    name="gs-group-list-email-html-appendix"
-    for="gs.group.list.email.base.interfaces.IPost"
-    manager=".interfaces.IHTMLMessage"
-    class="gs.group.base.GroupViewlet"
-    template="browser/templates/appendix.pt"
-    permission="zope2.Public"
-    weight="40"
-    title="Appendix" />
-  <browser:viewletManager
-    name="groupserver.EmailHTMLAppendix"
-    for="gs.group.list.email.base.interfaces.IPost"
-    provides=".interfaces.IAppendix"
-    class="gs.viewlet.manager.WeightOrderedViewletManager"
-    template="browser/templates/simplemanager.pt"
-    permission="zope2.Public" />
-
-   <browser:viewlet
-    name="gs-group-list-email-html-appendix-files"
-    for="gs.group.list.email.base.interfaces.IPost"
-    manager=".interfaces.IAppendix"
-    class=".files.Files"
-    template="browser/templates/files.pt"
-    permission="zope2.Public"
-    weight="10"
-    title="Files" />
-
-   <browser:viewlet
-    name="gs-group-list-email-html-appendix-footer"
-    for="gs.group.list.email.base.interfaces.IPost"
-    manager=".interfaces.IAppendix"
-    class=".footer.Footer"
-    template="browser/templates/footer.pt"
-    permission="zope2.Public"
-    weight="20"
-    title="Footer" /-->
-
   <!--CSS-->
   <browser:viewlet
     name="gs-group-list-email-html-css"
