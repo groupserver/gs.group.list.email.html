@@ -20,25 +20,43 @@ from gs.group.messages.post.postbody import split_message
 
 
 class Matcher(object):
+    '''Match a '''
     def __init__(self, matchRE, subStr):
         self.matchRE = matchRE
         self.subStr = subStr
         self.re = re_compile(self.matchRE, re_I | re_M | re_U)
 
     def match(self, s):
+        '''Does the string match the regular expression?
+
+:param str s: The string to evaluate
+:returns: ``True`` if the string matches the regular expression, ``False`` otherwise.
+:rtype: bool
+
+.. seealso: :func:`re.match`'''
         return self.re.match(s)
 
     def sub(self, s):
+        '''Substitute the string in for the substitution string
+
+:param str s: The string to process
+:returns: The new string substituted in :attr:`self.subStr`
+:rtype: unicode
+
+.. seealso: :func:`re.sub`'''
         return self.re.sub(self.subStr, s)
 
 
 class HTMLBody(object):
+    '''The HTML form of a plain-text email body.
+
+:param str originalText: The original (plain) text'''
     HTML_ESCAPE_TABLE = {
         '"': "&quot;",
         "'": "&apos;"
     }
     boldMatcher = Matcher("(\*.*\*)", r'<b>\g<1></b>')
-    emailMatcher = Matcher(r"(.*?)([A-Z0-9\._%+-]+@[A-Z0-9.-]+\.[A-Z]+)(.*?)",
+    emailMatcher = Matcher(r"(.*?)([A-Z0-9\._%+-]+@[A-Z0-9.-]+\.[A-Z]+)(.*)",
                            r'<a class="email" href="mailto:\g<2>">\g<1>\g<2>\g<3></a>')
     wwwMatcher = Matcher(r"(?i)(www\..+)", r'<a href="http://\g<1>">\g<1></a>')
     uriMatcher = Matcher(r"(?i)(http://|https://)(.+?)(\&lt;|\&gt;|\)|\]|\}|\"|\'|$|\s)",

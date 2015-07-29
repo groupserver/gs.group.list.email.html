@@ -80,7 +80,6 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=requires,
-    tests_require=['mock', ],
-    # test_suite="gs.group.list.email.text.tests.test_all",
+    test_suite="gs.group.list.email.html.tests.test_all",
     extras_require={'docs': ['Sphinx'], },
 )
