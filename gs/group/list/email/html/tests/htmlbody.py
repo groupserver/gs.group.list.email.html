@@ -146,7 +146,7 @@ class TestHTMLBody(TestCase):
             'Visit <a href="http://example.com/people/me?show=Stufff">'
             'http://example.com/people/me?show=Stufff</a>', r)
 
-    def test_quoted_line(self):
+    def test_line_quoted(self):
         'Test that a quoted line is muted'
         text = '> I am a fish.'
         hb = HTMLBody(text)
@@ -155,9 +155,23 @@ class TestHTMLBody(TestCase):
         expected = '<span class="line muted">&gt; I am a fish.</span><br/>'
         self.assertEqual(expected, r)
 
-    def test_blank_line(self):
+    def test_line_unix_from(self):
+        text = '>From A. Person'
+        hb = HTMLBody(text)
+
+        r = unicode(hb)
+        self.assertLine('&gt;From A. Person', r)
+
+    def test_line_normal(self):
+        text = 'I am a fish.'
+        hb = HTMLBody(text)
+
+        r = unicode(hb)
+        self.assertLine(text, r)
+
+    def test_line_blank(self):
         'Test a blank line'
-        text = '\n'
+        text = ' '
         hb = HTMLBody(text)
 
         r = unicode(hb)
@@ -166,7 +180,7 @@ class TestHTMLBody(TestCase):
 
     def test_all(self):
         'Test everything together.'
-        text = '''A Person <person@example.com> wrote:
+        text = '''>From A. Person <person@example.com>:
 
 > I am a *fish.*
 

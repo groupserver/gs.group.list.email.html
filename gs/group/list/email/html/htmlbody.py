@@ -93,7 +93,7 @@ class HTMLBody(object):
             retval = '&#160;<br/>'
         else:
             cssClass = "line"
-            if line.lstrip()[0] == '>':
+            if ((line.lstrip()[0] == '>') and (line.lstrip()[:5] != '>From')):
                 cssClass += " muted"
             #  <https://wiki.python.org/moin/EscapingHtml>
             escapedLine = escape(line.rstrip(), self.HTML_ESCAPE_TABLE)
