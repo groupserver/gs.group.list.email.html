@@ -80,6 +80,16 @@ class TestHTMLBody(TestCase):
             'Email me at <a class="email" '
             'href="mailto:person@example.com">person@example.com</a>', r)
 
+    def test_An_Email(self):
+        'Test email markup with mixed case'
+        text = 'Email me at A.Person@Example.com'
+        hb = HTMLBody(text)
+
+        r = unicode(hb)
+        self.assertLine(
+            'Email me at <a class="email" '
+            'href="mailto:A.Person@Example.com">A.Person@Example.com</a>', r)
+
     def test_angle_email(self):
         'Test when Michael writes an email address'
         text = 'Email me at <person@example.com>'
@@ -108,6 +118,15 @@ class TestHTMLBody(TestCase):
         r = unicode(hb)
         self.assertLine(
             'Visit <a href="http://www.example.com">www.example.com</a>', r)
+
+    def test_WWW(self):
+        'Test that WWW is turned into a link'
+        text = 'Visit WWW.Example.Com'
+        hb = HTMLBody(text)
+
+        r = unicode(hb)
+        self.assertLine(
+            'Visit <a href="http://WWW.Example.Com">WWW.Example.Com</a>', r)
 
     def test_http(self):
         'Test that an http-address is turned into a link'
