@@ -60,18 +60,21 @@ class HTMLBody(object):
     }
 
     #: Turn ``*asterisk*`` characters into bold-elements
-    boldMatcher = Matcher("(\*.*\*)", r'<b>\g<1></b>')
+    boldMatcher = Matcher("(?P<boldText>\*.*\*)", r'<b>\g<boldText></b>')
 
     #: Turn email addresses (``person@example.com``) into clickable ``mailto:`` links
-    emailMatcher = Matcher(r"(.*?)([A-Z0-9\._%+-]+@[A-Z0-9.-]+\.[A-Z]+)(.*)",
-                           r'<a class="email" href="mailto:\g<2>">\g<1>\g<2>\g<3></a>')
+    emailMatcher = Matcher(
+        r"(?P<leading>.*?)(?P<address>[A-Z0-9\._%+-]+@[A-Z0-9.-]+\.[A-Z]+)(?P<trailing>.*)",
+        r'<a class="email" href="mailto:\g<address>">\g<leading>\g<address>\g<trailing></a>')
 
     #: Turn site names (``www.example.com``) into clickable ``http://`` links
-    wwwMatcher = Matcher(r"(?i)(www\..+)", r'<a href="http://\g<1>">\g<1></a>')
+    wwwMatcher = Matcher(r"(?P<siteName>www\..+)",
+                         r'<a href="http://\g<siteName>">\g<siteName></a>')
 
     #: Turn URIs (both ``http`` and ``https``) into clickable links
-    uriMatcher = Matcher(r"(?i)(http://|https://)(.+?)(\&lt;|\&gt;|\)|\]|\}|\"|\'|$|\s)",
-                         r'<a href="\g<1>\g<2>">\g<1>\g<2></a>\g<3>')
+    uriMatcher = Matcher(
+        r"(?P<protocol>http://|https://)(?P<rest>.+?)(?P<trailing>\&lt;|\&gt;|\)|\]|\}|\"|\'|$|\s)",
+        r'<a href="\g<protocol>\g<rest>">\g<protocol>\g<rest></a>\g<trailing>')
 
     def __init__(self, originalText):
         if not originalText:
