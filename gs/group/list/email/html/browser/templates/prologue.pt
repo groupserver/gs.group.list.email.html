@@ -43,7 +43,4 @@
       </table><!--gs-group-list-email-html-body-metadata-text-->
     </td>
   </tr>
-  <tr>
-    <td tal:content="python:'%s'%view"></td>
-  </tr>
 </table><!--gs-group-list-email-html-body-metadata-->
