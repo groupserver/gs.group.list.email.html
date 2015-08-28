@@ -26,7 +26,7 @@ from gs.group.list.email.base import EmailMessageViewlet
 
 class PrologueViewlet(EmailMessageViewlet):
     'The viewlet for the the prologue'
-    IMG_SIZE = 70
+    IMG_SIZE = 40
 
     @Lazy
     def leaveLink(self):
@@ -61,6 +61,7 @@ Thank you.'''
 
     @Lazy
     def profileImageUrl(self):
+        print('Here')
         r = '{0}{1}/gs-profile-image-square/{2}'
         retval = r.format(self.siteInfo.url, self.author.url, self.IMG_SIZE)
         return retval
