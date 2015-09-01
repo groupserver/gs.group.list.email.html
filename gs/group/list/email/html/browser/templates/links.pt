@@ -1,0 +1,15 @@
+<table id="gs-group-list-email-html-links"
+       xmlns:tal="http://xml.zope.org/namespaces/tal"
+       align="center" valign="center"
+       border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td>
+      <a href="#" title="View this post on the web" class="muted"
+         tal:attributes="href view/post/url">View post&#8230;</a>
+      &#160;
+      <a href="#" title="View this post within the topic on the web"
+         tal:attributes="href view/post/topicURL"
+         class="btn">View topic&#8230;</a>
+    </td><!--gs-group-list-email-html-links-view-topic-->
+  </tr>
+</table><!--gs-group-list-email-html-links-->

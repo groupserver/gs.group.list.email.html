@@ -135,6 +135,18 @@
     weight="30"
     title="Files" />
 
+  <!-- The links at the bottom of the message, before the -->
+  <!-- footer -->
+  <browser:viewlet
+    name="gs-group-list-email-html-links"
+    for="gs.group.list.email.base.interfaces.IPost"
+    manager=".interfaces.IHTMLMessage"
+    class=".metadata.MetadataViewlet"
+    template="browser/templates/links.pt"
+    permission="zope2.Public"
+    weight="40"
+    title="Links" />
+
   <!--CSS-->
   <browser:viewlet
     name="gs-group-list-email-html-css"
