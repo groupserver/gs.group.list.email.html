@@ -45,17 +45,11 @@ Thank you.'''
         return retval
 
     @Lazy
-    def topicURL(self):
-        'Same as self.context.post, but with the URL of the topic'
-        retval = self.context.post
-        retval['url'] = '{0}/r/topic/{1}'.format(self.siteInfo.url, retval['post_id'])
-        return retval
-
-    @Lazy
     def post(self):
-        'Same as self.context.post, but with the URL of the post'
+        'Same as self.context.post, but with the URL of the post and topic'
         retval = self.context.post
         retval['url'] = '{0}/r/post/{1}'.format(self.siteInfo.url, retval['post_id'])
+        retval['topicURL'] = '{0}/r/topic/{1}'.format(self.siteInfo.url, retval['post_id'])
         return retval
 
     @Lazy
