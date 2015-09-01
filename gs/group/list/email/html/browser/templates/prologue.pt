@@ -41,9 +41,6 @@
             <a href="#" class="group"
                tal:attributes="href view/groupInfo/url">
             <b tal:content="view/groupInfo/name">This group</b></a>
-            &#160;&#160;
-            <a class="muted small" href="#"
-               tal:attributes="href view/leaveLink">Leave?</a>
           </td>
         </tr>
       </table><!--gs-group-list-email-html-body-metadata-text-->

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ############################################################################
 #
-# Copyright © 2014, 2015 OnlineGroups.net and Contributors.
+# Copyright © 2015 OnlineGroups.net and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -19,25 +19,20 @@ if sys.version_info >= (3, ):  # pragma: no cover
 else:  # Python 2
     from urllib import quote
 from zope.cachedescriptors.property import Lazy
-from zope.component import createObject
 from gs.core import to_unicode_or_bust
-from gs.group.list.email.base import EmailMessageViewlet
+from .metadata import MetadataViewlet
 
 
-class MetadataViewlet(EmailMessageViewlet):
-    'The viewlet for the the prologue'
-
-    @Lazy
-    def email(self):
-        'The group email address'
-        retval = self.listInfo.get_property('mailto')
-        return retval
+class LinksViewlet(MetadataViewlet):
+    'The viewlet for the the links'
 
     @Lazy
-    def leaveLink(self):
+    def digestLink(self):
         b = '''Hello,
 
-Please remove me from {groupInfo.name}
+Please switch me from receiving one email per post to the daily
+digest, which summarises the all the posts made each day in
+{groupInfo.name}
 <{groupInfo.url}>
 
 Thank you.'''
@@ -45,20 +40,21 @@ Thank you.'''
         uval = to_unicode_or_bust(ub)
         utf8val = uval.encode('utf-8')
         body = quote(utf8val)
-        retval = 'mailto:{0}?Subject=Unsubscribe&body={1}'.format(self.email, body)
+        digestOn = quote('Digest on')
+        r = 'mailto:{0}?Subject={1}&body={2}'
+        retval = r.format(self.email, digestOn, body)
         return retval
 
     @Lazy
-    def post(self):
-        'Same as self.context.post, but with the URL of the post and topic'
-        retval = self.context.post
-        retval['url'] = '{0}/r/post/{1}'.format(self.siteInfo.url, retval['post_id'])
-        retval['topicURL'] = '{0}/r/topic/{1}'.format(self.siteInfo.url, retval['post_id'])
+    def replyLink(self):
+        t = 'Re: {0}'.format(self.post['subject'])
+        utf8val = t.encode('utf-8')
+        topic = quote(utf8val)
+        r = 'mailto:{0}?Subject={1}'
+        retval = r.format(self.email, topic)
         return retval
 
     @Lazy
-    def author(self):
-        'The person who authored the post'
-        retval = createObject('groupserver.UserFromId',
-                              self.groupInfo.groupObj, self.post['user_id'])
+    def newLink(self):
+        retval = 'mailto:{0}'.format(self.email)
         return retval

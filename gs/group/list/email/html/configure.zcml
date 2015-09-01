@@ -141,7 +141,7 @@
     name="gs-group-list-email-html-links"
     for="gs.group.list.email.base.interfaces.IPost"
     manager=".interfaces.IHTMLMessage"
-    class=".metadata.MetadataViewlet"
+    class=".links.LinksViewlet"
     template="browser/templates/links.pt"
     permission="zope2.Public"
     weight="40"
