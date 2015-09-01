@@ -19,7 +19,7 @@ from .metadata import MetadataViewlet
 
 class PrologueViewlet(MetadataViewlet):
     'The viewlet for the the prologue'
-    IMG_SIZE = 40
+    IMG_SIZE = 60
 
     @Lazy
     def profileImageUrl(self):

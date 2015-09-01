@@ -7,14 +7,28 @@
     padding:0;
     margin: 0;
 }
-#gs-group-list-email-html-body td {
+#gs-group-list-email-html-body hr, #gs-group-list-email-html-files hr {
+    padding: 9px 0 0 0;
+    margin: 0;
+    border-top: none;
+    border-bottom-width: 1px;
+    border-bottom-color: #eeeeee;
+}
+#gs-group-list-email-html-body-main {
     padding: 10px 0 0 0;
     margin: 0;
 }
 #gs-group-list-email-html-body .line {
     white-space: pre;
 }
-#gs-group-list-email-html-files h3 {
+#gs-group-list-email-html-body-read-more a:visited {
+    color: #999999;
+}
+#gs-group-list-email-html-links td {
+    padding: 20px 0 0 0;
+    margin: 0;
+}
+#gs-group-list-email-html-files h4 {
     padding: 10px 0 0 0;
     margin: 0;
 }

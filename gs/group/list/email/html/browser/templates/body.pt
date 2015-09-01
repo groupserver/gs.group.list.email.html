@@ -3,11 +3,16 @@
        align="center" border="0" cellpadding="0" cellspacing="0"
        width="100%">
   <tr>
-    <td tal:content="structure view/htmlBody">
+    <td><hr/></td>
+  </tr>
+  <tr>
+    <td id="gs-group-list-email-html-body-main"
+        tal:content="structure view/htmlBody">
       The body of the post.
     </td>
   </tr>
-  <tr tal:condition="view/readMore">
+  <tr id="gs-group-list-email-html-body-read-more"
+      tal:condition="view/readMore">
     <td>
       <a tal:attributes="href string:${view/post/url}"
          class="small muted"

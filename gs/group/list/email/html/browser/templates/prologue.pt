@@ -23,6 +23,12 @@
       <table>
         <tr>
           <td>
+            <a tal:attributes="href view/post/topicURL"
+               href="#"><b tal:content="view/post/subject">Topic</b></a>
+          </td>
+        </tr>
+        <tr>
+          <td>
             <span class="muted">by </span>
             <a tal:attributes="href string:${view/siteInfo/url}${view/author/url}"
                href="#"><b tal:content="view/author/name">A. Person</b>
@@ -30,7 +36,7 @@
           </td>
         </tr>
         <tr>
-          <td class="">
+          <td>
             <span class="muted">in </span>
             <a href="#" class="group"
                tal:attributes="href view/groupInfo/url">
