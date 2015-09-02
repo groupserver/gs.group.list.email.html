@@ -19,8 +19,19 @@
     margin: 0;
 }
 #gs-group-list-email-html-body .line {
-    white-space: pre;
+    display: inline-block;
+    white-space: pre-wrap;
+    width: 100%;
 }
+#gs-group-list-email-html-body .line a {
+    text-decoration: underline;
+}
+
+#gs-group-list-email-html-body-read-more td {
+    padding: 10px 0 0 0;
+    margin: 0;
+}
+#gs-group-list-email-html-body,
 #gs-group-list-email-html-links td {
     padding: 20px 0 0 0;
     margin: 0;

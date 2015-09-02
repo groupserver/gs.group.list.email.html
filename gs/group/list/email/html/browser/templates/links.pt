@@ -7,33 +7,26 @@
   </tr>
   <tr id="gs-group-list-email-html-links-view">
     <td>
-      <a id="gs-group-list-email-html-links-view-post" class="muted"
-         href="#" title="View this post on the web"
-         tal:attributes="href view/post/url">View post&#8230;</a>
-      &#160;
-      <a id="gs-group-list-email-html-links-view-topic" class="btn"
-         href="#" title="View this post within the topic on the web"
-         tal:attributes="href view/post/topicURL">View topic&#8230;</a>
+      <a id="gs-group-list-email-html-links-view-reply"
+         href="#" title="Reply to this email" class="btn"
+         tal:attributes="href view/replyLink">&#11178; Reply</a>
       &#160;
       <a id="gs-group-list-email-html-links-view-new"
          href="#" title="Start a new topic by email" class="btn"
          tal:attributes="href view/newLink">&#128386; New topic</a>
       &#160;
-      <a id="gs-group-list-email-html-links-view-reply"
-         href="#" title="Reply to this email" class="btn"
-         tal:attributes="href view/replyLink">&#11178; Reply</a>
+      <a id="gs-group-list-email-html-links-view-topic" class="btn"
+         href="#" title="View this post within the topic on the web"
+         tal:attributes="href view/post/topicURL">View topic&#8230;</a>
     </td><!--gs-group-list-email-html-links-view-topic-->
   </tr>
   <tr id="gs-group-list-email-html-links-settings">
     <td>
       <a tal:attributes="href view/leaveLink"
-         href="#">Unsubscribe
-      <span class="muted">(leave
-        <span class="group"
-              tal:content="view/groupInfo/name">this group</span>)</span></a>
+         href="#">Unsubscribe</a>
       <span class="muted">&#160;&#8226;&#160;</span>
       <a tal:attributes="href view/digestLink"
-         href="#" >Switch to a <b>daily digest</b></a>
+         href="#" >Switch to a daily digest</a>
     </td>
   </tr>
 </table><!--gs-group-list-email-html-links-->

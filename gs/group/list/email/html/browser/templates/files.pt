@@ -4,11 +4,6 @@
        width="100%"
        tal:define="filesMetadata view/post/files_metadata">
   <tr>
-    <td>
-      <hr/>
-    </td>
-  </tr>
-  <tr>
     <td id="gs-group-list-email-html-files-h">
       <h4 tal:condition="python:len(filesMetadata) == 1">One file</h4>
       <h4 tal:condition="python:len(filesMetadata) != 1">
