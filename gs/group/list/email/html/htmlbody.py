@@ -73,8 +73,9 @@ class HTMLBody(object):
 
     #: Turn URIs (both ``http`` and ``https``) into clickable links
     uriMatcher = Matcher(
-        r"(?P<protocol>http://|https://)(?P<rest>.+?)(?P<trailing>\&lt;|\&gt;|\)|\]|\}|\"|\'|$|\s)",
-        r'<a href="\g<protocol>\g<rest>">\g<protocol>\g<rest></a>\g<trailing>')
+        r"(?P<leading>\&lt;|\(|\[|\{|\"|\'|^)(?P<protocol>http://|https://)(?P<rest>.+?)"
+        r"(?P<trailing>\&gt;|\)|\]|\}|\"|\'|$|\s)",
+        r'<a href="\g<protocol>\g<rest>">\g<leading>\g<protocol>\g<rest>\g<trailing></a>')
 
     def __init__(self, originalText):
         if not originalText:

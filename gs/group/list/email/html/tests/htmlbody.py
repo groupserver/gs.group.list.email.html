@@ -165,6 +165,15 @@ class TestHTMLBody(TestCase):
             'Visit <a href="http://example.com/people/me?show=Stufff">'
             'http://example.com/people/me?show=Stufff</a>', r)
 
+    def test_http_angle(self):
+        'Test an http-address in angle brackets'
+        text = 'Visit <http://example.com/>.'
+        hb = HTMLBody(text)
+
+        r = unicode(hb)
+        self.assertLine(
+            'Visit <a href="http://example.com/">&lt;http://example.com/&gt;</a>.', r)
+
     def test_line_quoted(self):
         'Test that a quoted line is muted'
         text = '> I am a fish.'
