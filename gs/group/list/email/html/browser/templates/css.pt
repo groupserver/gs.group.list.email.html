@@ -1,4 +1,5 @@
 <tal:block xmlns:tal="http://xml.zope.org/namespaces/tal">
+/*gs-group-list-email-html CSS*/
 #gs-group-list-email-html-prologue-metadata td {
     padding: 0 0 0 10px;
     margin: 0;
@@ -22,9 +23,16 @@
     display: inline-block;
     white-space: pre-wrap;
     width: 100%;
+    max-width: 580px;  /* 600px - padding*/
 }
 #gs-group-list-email-html-body .line a {
     text-decoration: underline;
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #gs-group-list-email-html-body-read-more td {
