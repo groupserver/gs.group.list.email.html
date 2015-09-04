@@ -56,7 +56,7 @@ class URIMatcher(Matcher):
     def __init__(self):
         super(URIMatcher, self).__init__(
             r"(?P<leading>\&lt;|\(|\[|\{|\"|\'|^)(?P<protocol>http://|https://)"
-            r"(?P<host>([a-z\d][-a-z\d]*[a-z\d]\.)*[a-z][-a-z\\d]+[a-z])(?P<rest>.+?)"
+            r"(?P<host>([a-z\d][-a-z\d]*[a-z\d]\.)*[a-z][-a-z\\d]+[a-z])(?P<rest>.*?)"
             r"(?P<trailing>\&gt;|\)|\]|\}|\"|\'|$|\s)",
             r'<a href="\g<protocol>\g<host>\g<rest>">\g<leading>\g<protocol><b>\g<host></b>'
             r'\g<rest>\g<trailing></a>')
@@ -82,10 +82,10 @@ class URIMatcher(Matcher):
     def long_url_sub(self, s):
         m = self.re.match(s)
         gd = m.groupdict()
-        brokenTrailing = self.add_zws(gd['rest'] + gd['trailing'])
-        c = '{leading}{protocol}<b>{host}</b>{other}'
+        brokenRest = self.add_zws(gd['rest'])
+        c = '{leading}{protocol}<b>{host}</b>{rest}{trailing}'
         content = c.format(leading=gd['leading'], protocol=gd['protocol'], host=gd['host'],
-                           other=brokenTrailing)
+                           rest=brokenRest, trailing=gd['trailing'])
         if len(s) > 64:
             r = '<a class="small" href="{0}">{1}</a>'
         else:

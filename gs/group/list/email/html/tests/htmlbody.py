@@ -135,7 +135,7 @@ class TestHTMLBody(TestCase):
 
         r = unicode(hb)
         self.assertLine(
-            'Visit <a href="http://example.com">http://example.com</a>', r)
+            'Visit <a href="http://example.com">http://<b>example.com</b></a>', r)
 
     def test_https(self):
         'Test that an https-address is turned into a link'
@@ -144,7 +144,7 @@ class TestHTMLBody(TestCase):
 
         r = unicode(hb)
         self.assertLine(
-            'Visit <a href="https://example.com">https://example.com</a>', r)
+            'Visit <a href="https://example.com">https://<b>example.com</b></a>', r)
 
     def test_http_path(self):
         'Test a http-address with a path'
@@ -153,7 +153,8 @@ class TestHTMLBody(TestCase):
 
         r = unicode(hb)
         self.assertLine(
-            'Visit <a href="http://example.com/people/me">http://example.com/people/me</a>', r)
+            'Visit <a href="http://example.com/people/me">http://<b>example.com</b>/people/me</a>',
+            r)
 
     def test_http_query(self):
         'Test an http-address with a query string'
@@ -163,7 +164,7 @@ class TestHTMLBody(TestCase):
         r = unicode(hb)
         self.assertLine(
             'Visit <a href="http://example.com/people/me?show=Stufff">'
-            'http://example.com/people/me?show=Stufff</a>', r)
+            'http://<b>example.com</b>&#8203;/people&#8203;/me&#8203;?show&#8203;=Stufff</a>', r)
 
     def test_http_angle(self):
         'Test an http-address in angle brackets'
@@ -172,7 +173,19 @@ class TestHTMLBody(TestCase):
 
         r = unicode(hb)
         self.assertLine(
-            'Visit <a href="http://example.com/">&lt;http://example.com/&gt;</a>.', r)
+            'Visit <a href="http://example.com/">&lt;http://<b>example.com</b>/&gt;</a>.', r)
+
+    def test_long_https_angle(self):
+        'Test a long https-address in angle brackets'
+        text = 'Visit <https://groups.example.com/people/a_very_long_user_id?show=Stufff>'
+        hb = HTMLBody(text)
+        self.maxDiff = None
+        r = unicode(hb)
+        self.assertLine(
+            'Visit <a class="small" href="https://groups.example.com/people/a_very_long_user_id'
+            '?show=Stufff">'
+            '&lt;https://<b>groups.example.com</b>&#8203;/people&#8203;/a&#8203;_very&#8203;_long'
+            '&#8203;_user&#8203;_id&#8203;?show&#8203;=Stufff&gt;</a>', r)
 
     def test_line_quoted(self):
         'Test that a quoted line is muted'
