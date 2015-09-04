@@ -24,15 +24,11 @@
     white-space: pre-wrap;
     width: 100%;
     max-width: 580px;  /* 600px - padding*/
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #gs-group-list-email-html-body .line a {
     text-decoration: underline;
-    display: inline-block;
-    width: 100%;
-    max-width: 100%;
-    white-space: pre;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 #gs-group-list-email-html-body-read-more td {

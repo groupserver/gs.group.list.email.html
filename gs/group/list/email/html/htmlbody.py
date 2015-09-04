@@ -14,6 +14,7 @@
 ############################################################################
 from __future__ import absolute_import, unicode_literals
 from re import compile as re_compile, I as re_I, M as re_M, U as re_U
+from string import punctuation
 from xml.sax.saxutils import escape
 from zope.cachedescriptors.property import Lazy
 from gs.group.messages.post.postbody import split_message
@@ -50,6 +51,50 @@ class Matcher(object):
         return self.re.sub(self.subStr, s)
 
 
+class URIMatcher(Matcher):
+    '''A horrid hack for a horrid issue'''
+    def __init__(self):
+        super(URIMatcher, self).__init__(
+            r"(?P<leading>\&lt;|\(|\[|\{|\"|\'|^)(?P<protocol>http://|https://)"
+            r"(?P<host>([a-z\d][-a-z\d]*[a-z\d]\.)*[a-z][-a-z\\d]+[a-z])(?P<rest>.+?)"
+            r"(?P<trailing>\&gt;|\)|\]|\}|\"|\'|$|\s)",
+            r'<a href="\g<protocol>\g<host>\g<rest>">\g<leading>\g<protocol><b>\g<host></b>'
+            r'\g<rest>\g<trailing></a>')
+
+    def sub(self, s):
+        if len(s) <= 32:
+            retval = super(URIMatcher, self).sub(s)
+        else:
+            retval = self.long_url_sub(s)
+        return retval
+
+    @staticmethod
+    def add_zws(s):
+        'Add zero-width spaces to the string'
+        retval = ''
+        for c in s:
+            if c in punctuation:
+                retval += ('&#8203;' + c)
+            else:
+                retval += c
+        return retval
+
+    def long_url_sub(self, s):
+        m = self.re.match(s)
+        gd = m.groupdict()
+        brokenTrailing = self.add_zws(gd['rest'] + gd['trailing'])
+        c = '{leading}{protocol}<b>{host}</b>{other}'
+        content = c.format(leading=gd['leading'], protocol=gd['protocol'], host=gd['host'],
+                           other=brokenTrailing)
+        if len(s) > 64:
+            r = '<a class="small" href="{0}">{1}</a>'
+        else:
+            r = '<a href="{0}">{1}</a>'
+        url = '{0}{1}{2}'.format(gd['protocol'], gd['host'], gd['rest'])
+        retval = r.format(url, content)
+        return retval
+
+
 class HTMLBody(object):
     '''The HTML form of a plain-text email body.
 
@@ -72,10 +117,7 @@ class HTMLBody(object):
                          r'<a href="http://\g<siteName>">\g<siteName></a>')
 
     #: Turn URIs (both ``http`` and ``https``) into clickable links
-    uriMatcher = Matcher(
-        r"(?P<leading>\&lt;|\(|\[|\{|\"|\'|^)(?P<protocol>http://|https://)(?P<rest>.+?)"
-        r"(?P<trailing>\&gt;|\)|\]|\}|\"|\'|$|\s)",
-        r'<a href="\g<protocol>\g<rest>">\g<leading>\g<protocol>\g<rest>\g<trailing></a>')
+    uriMatcher = URIMatcher()
 
     def __init__(self, originalText):
         if not originalText:
