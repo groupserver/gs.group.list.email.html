@@ -49,6 +49,8 @@ class HTMLMessagePart(object):
     '''The HTML-message a part, that can be used to make an email'''
     #: The weight, used for sorting the different message-types
     weight = 20
+    #: The show property is used to determine if the message part should be shown
+    show = True
 
     def __init__(self, post, request):
         self.post = self.context = post
