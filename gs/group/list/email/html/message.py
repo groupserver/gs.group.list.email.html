@@ -50,11 +50,26 @@ class HTMLMessagePart(object):
     #: The weight, used for sorting the different message-types
     weight = 20
     #: The show property is used to determine if the message part should be shown
-    show = True
 
     def __init__(self, post, request):
         self.post = self.context = post
         self.request = request
+
+    def property_from_config(self, configName, propertyName):
+        retval = None
+        config = getattr(self.context, configName, None)
+        if config:
+            retval = config.getProperty(propertyName, None)
+        return retval
+
+    @Lazy
+    def show(self):
+        retval = self.property_from_config(b'DivisionConfiguration', b'htmlEmail')
+        if retval is None:
+            retval = self.property_from_config(b'GlobalConfiguration', b'htmlEmail')
+        if retval is None:
+            retval = True
+        return retval
 
     def as_email(self):
         '''The HTML message as an email-component
