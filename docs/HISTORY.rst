@@ -6,6 +6,12 @@ TODO: 2.0.0 (yyyy-mm-dd)
 
 * Using the HTML form of an email if present
 
+1.1.0 (2015-09-16)
+------------------
+
+* Allowing HTML formatted messages to be turned off on a site and
+  install basis
+
 1.0.0 (2015-09-08)
 ------------------
 
