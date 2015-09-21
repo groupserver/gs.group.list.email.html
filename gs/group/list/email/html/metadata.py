@@ -45,7 +45,7 @@ Thank you.'''
         uval = to_unicode_or_bust(ub)
         utf8val = uval.encode('utf-8')
         body = quote(utf8val)
-        retval = 'mailto:{0}?Subject=Unsubscribe&body={1}'.format(self.email, body)
+        retval = 'mailto:{0}?subject=Unsubscribe&body={1}'.format(self.email, body)
         return retval
 
     @Lazy

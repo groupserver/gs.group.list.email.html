@@ -41,7 +41,7 @@ Thank you.'''
         utf8val = uval.encode('utf-8')
         body = quote(utf8val)
         digestOn = quote('Digest on')
-        r = 'mailto:{0}?Subject={1}&body={2}'
+        r = 'mailto:{0}?subject={1}&body={2}'
         retval = r.format(self.email, digestOn, body)
         return retval
 
@@ -50,7 +50,7 @@ Thank you.'''
         t = 'Re: {0}'.format(self.post['subject'])
         utf8val = t.encode('utf-8')
         topic = quote(utf8val)
-        r = 'mailto:{0}?Subject={1}'
+        r = 'mailto:{0}?subject={1}'
         retval = r.format(self.email, topic)
         return retval
 
