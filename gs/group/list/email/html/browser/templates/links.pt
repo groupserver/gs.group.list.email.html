@@ -7,14 +7,18 @@
   </tr>
   <tr id="gs-group-list-email-html-links-view">
     <td>
-      <a id="gs-group-list-email-html-links-view-reply"
-         href="#" title="Reply to this email" class="btn"
-         tal:attributes="href view/replyLink">&#11178; Reply</a>
-      &#160;
-      <a id="gs-group-list-email-html-links-view-new"
-         href="#" title="Start a new topic by email" class="btn"
-         tal:attributes="href view/newLink">&#128386; New topic</a>
-      &#160;
+      <tal:block condition="view/replyLink">
+        <a id="gs-group-list-email-html-links-view-reply"
+           href="#" title="Reply to this email" class="btn"
+           tal:attributes="href view/replyLink">&#11178; Reply</a>
+        &#160;
+      </tal:block>
+      <tal:block condition="view/newLink">
+        <a id="gs-group-list-email-html-links-view-new"
+           href="#" title="Start a new topic by email" class="btn"
+           tal:attributes="href view/newLink">&#128386; New topic</a>
+        &#160;
+      </tal:block>
       <a id="gs-group-list-email-html-links-view-topic" class="btn"
          href="#" title="View this post within the topic on the web"
          tal:attributes="href view/post/topicURL">View topic&#8230;</a>

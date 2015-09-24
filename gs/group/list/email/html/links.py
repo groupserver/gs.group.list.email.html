@@ -12,7 +12,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ############################################################################
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import, unicode_literals, print_function
 import sys
 if sys.version_info >= (3, ):  # pragma: no cover
     from urllib.parse import quote
@@ -20,6 +20,7 @@ else:  # Python 2
     from urllib import quote
 from zope.cachedescriptors.property import Lazy
 from gs.core import to_unicode_or_bust
+from gs.group.list.base import (replyto, ReplyTo)
 from .metadata import MetadataViewlet
 
 
@@ -46,15 +47,26 @@ Thank you.'''
         return retval
 
     @Lazy
+    def replyTo(self):
+        retval = replyto(self.listinfo)
+        return retval
+
+    @Lazy
     def replyLink(self):
         t = 'Re: {0}'.format(self.post['subject'])
         utf8val = t.encode('utf-8')
         topic = quote(utf8val)
         r = 'mailto:{0}?subject={1}'
-        retval = r.format(self.email, topic)
+        if self.replyTo == ReplyTo.group:
+            retval = r.format(self.email, topic)
+        else:
+            retval = None
         return retval
 
     @Lazy
     def newLink(self):
-        retval = 'mailto:{0}'.format(self.email)
+        if self.replyTo == ReplyTo.author:
+            retval = None
+        else:
+            retval = 'mailto:{0}'.format(self.email)
         return retval

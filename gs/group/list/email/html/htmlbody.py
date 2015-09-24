@@ -12,7 +12,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ############################################################################
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import, unicode_literals, print_function
 from re import compile as re_compile, I as re_I, M as re_M, U as re_U
 from string import punctuation
 from xml.sax.saxutils import escape
