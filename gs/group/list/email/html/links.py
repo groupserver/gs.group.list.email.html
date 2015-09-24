@@ -48,16 +48,16 @@ Thank you.'''
 
     @Lazy
     def replyTo(self):
-        retval = replyto(self.listinfo)
+        retval = replyto(self.listInfo)
         return retval
 
     @Lazy
     def replyLink(self):
-        t = 'Re: {0}'.format(self.post['subject'])
-        utf8val = t.encode('utf-8')
-        topic = quote(utf8val)
-        r = 'mailto:{0}?subject={1}'
         if self.replyTo == ReplyTo.group:
+            t = 'Re: {0}'.format(self.post['subject'])
+            utf8val = t.encode('utf-8')
+            topic = quote(utf8val)
+            r = 'mailto:{0}?subject={1}'
             retval = r.format(self.email, topic)
         else:
             retval = None
