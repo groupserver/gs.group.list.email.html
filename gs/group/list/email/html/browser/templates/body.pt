@@ -6,7 +6,7 @@
     <td><hr/></td>
   </tr>
   <tr>
-    <td id="gs-group-list-email-html-body-main"
+    <td id="gs-group-list-email-html-body-main" align="left"
         tal:content="structure view/htmlBody">
       The body of the post.
     </td>
