@@ -34,7 +34,7 @@ requires = [
     'gs.group.base',
     'gs.group.list.email.base',
     'gs.group.list.email.text',
-    'gs.group.messages.post',
+    'gs.group.messages.post.text',
     'gs.viewlet',
 ]
 

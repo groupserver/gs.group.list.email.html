@@ -17,7 +17,7 @@ from re import compile as re_compile, I as re_I, M as re_M, U as re_U
 from string import punctuation
 from xml.sax.saxutils import escape
 from zope.cachedescriptors.property import Lazy
-from gs.group.messages.post.postbody import split_message
+from gs.group.messages.post.text.postbody import split_message
 
 
 class Matcher(object):
