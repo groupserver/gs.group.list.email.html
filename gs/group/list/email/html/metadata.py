@@ -13,14 +13,9 @@
 #
 ############################################################################
 from __future__ import absolute_import, unicode_literals
-import sys
-if sys.version_info >= (3, ):  # pragma: no cover
-    from urllib.parse import quote
-else:  # Python 2
-    from urllib import quote
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject
-from gs.core import to_unicode_or_bust
+from gs.core import mailto
 from gs.group.list.email.base import EmailMessageViewlet
 
 
@@ -41,11 +36,8 @@ Please remove me from {groupInfo.name}
 <{groupInfo.url}>
 
 Thank you.'''
-        ub = b.format(groupInfo=self.groupInfo)
-        uval = to_unicode_or_bust(ub)
-        utf8val = uval.encode('utf-8')
-        body = quote(utf8val)
-        retval = 'mailto:{0}?subject=Unsubscribe&body={1}'.format(self.email, body)
+        body = b.format(groupInfo=self.groupInfo)
+        retval = mailto(self.email, 'Unsubscribe', body)
         return retval
 
     @Lazy

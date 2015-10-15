@@ -19,7 +19,7 @@ if sys.version_info >= (3, ):  # pragma: no cover
 else:  # Python 2
     from urllib import quote
 from zope.cachedescriptors.property import Lazy
-from gs.core import to_unicode_or_bust
+from gs.core import mailto
 from gs.group.list.base import (replyto, ReplyTo)
 from .metadata import MetadataViewlet
 
@@ -37,13 +37,8 @@ digest, which summarises the all the posts made each day in
 <{groupInfo.url}>
 
 Thank you.'''
-        ub = b.format(groupInfo=self.groupInfo)
-        uval = to_unicode_or_bust(ub)
-        utf8val = uval.encode('utf-8')
-        body = quote(utf8val)
-        digestOn = quote('Digest on')
-        r = 'mailto:{0}?subject={1}&body={2}'
-        retval = r.format(self.email, digestOn, body)
+        body = b.format(groupInfo=self.groupInfo)
+        retval = mailto(self.email, 'Digest on', body)
         return retval
 
     @Lazy
