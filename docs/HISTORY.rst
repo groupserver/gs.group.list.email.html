@@ -10,9 +10,13 @@ TODO: 2.0.0 (yyyy-mm-dd)
 ------------------
 
 * Following the changes to `gs.group.messages.post.text`_
+* Using the ``mailto`` function from `gs.core`_
 
 .. _gs.group.messages.post.text:
    https://github.com/groupserver/gs.group.messages.post.text
+
+.. _gs.core:
+   https://github.com/groupserver/gs.core
 
 1.1.3 (2015-09-28)
 ------------------
