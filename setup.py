@@ -81,6 +81,6 @@ setup(
     zip_safe=False,
     install_requires=requires,
     tests_require=['mock', ],
-    test_suite="gs.group.list.email.html.tests.test_all",
+    test_suite="{0}.tests.test_all".format(name),
     extras_require={'docs': ['Sphinx'], },
 )
