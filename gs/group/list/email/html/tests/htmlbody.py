@@ -14,39 +14,24 @@
 ############################################################################
 from __future__ import absolute_import, unicode_literals, print_function
 import codecs
+from contextlib import contextmanager
 import os
+from pkg_resources import resource_filename
 from unittest import TestCase
-from gs.group.list.email.html.htmlbody import HTMLBody, Matcher
-
-
-class TestMatcher(TestCase):
-    def test_match(self):
-        re = '.*(fish).*'
-        m = Matcher(re, None)
-
-        r = m.match('I am a fish.')
-        self.assertTrue(r)
-
-    def test_miss(self):
-        'Test when they do not match'
-        re = '.*(fish).*'
-        m = Matcher(re, None)
-
-        r = m.match('I am a dog.')
-        self.assertFalse(r)
-
-    def test_sub(self):
-        re = 'fish'
-        sub = 'dog'
-        m = Matcher(re, sub)
-
-        r = m.sub('I am a fish.')
-        self.assertEqual('I am a dog.', r)
+from gs.group.list.email.html.htmlbody import HTMLBody
 
 
 class TestHTMLBody(TestCase):
     'Test the HTMLBody class'
     line = '<span class="line">{0}</span><br/>'
+
+    @staticmethod
+    @contextmanager
+    def open_test_file(filename):
+        testname = os.path.join('tests', filename)
+        fullname = resource_filename('gs.group.list.email.html', testname)
+        with codecs.open(fullname, 'r', encoding='utf-8') as infile:
+            yield infile
 
     def assertLine(self, expected, val):
         line = self.line.format(expected)
@@ -230,8 +215,7 @@ https://sea.example.com/swim?attitude=like'''
         hb = HTMLBody(text)
 
         r = unicode(hb)
-        filename = os.path.join('gs', 'group', 'list', 'email', 'html', 'tests', 'e.html')
-        with codecs.open(filename, 'r', encoding='UTF-8') as infile:
+        with self.open_test_file('e.html') as infile:
             expected = infile.read()
         self.maxDiff = 1024
         self.assertEqual(expected.strip(), r.strip())
