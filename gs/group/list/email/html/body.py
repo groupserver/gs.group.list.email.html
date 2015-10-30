@@ -15,7 +15,7 @@
 from __future__ import absolute_import, unicode_literals
 from zope.cachedescriptors.property import Lazy
 from gs.group.list.email.base import EmailMessageViewlet
-from .htmlbody import HTMLBody
+from gs.group.messages.text import HTMLBody
 
 
 class BodyViewlet(EmailMessageViewlet):

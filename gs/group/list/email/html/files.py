@@ -13,9 +13,9 @@
 #
 ############################################################################
 from __future__ import absolute_import, unicode_literals
-from math import pow, floor, log
 from zope.cachedescriptors.property import Lazy
 from gs.group.list.email.text.files import FilesViewlet
+from gs.group.messages.base import file_size_format
 
 
 class FilesListViewlet(FilesViewlet):
@@ -34,13 +34,5 @@ class FilesListViewlet(FilesViewlet):
     @staticmethod
     def file_size_format(bytes):
         """Returns a humanized string for a given amount of bytes"""
-        # http://python.todaysummary.com/q_python_11123.html
-        bytes = int(bytes)
-        if bytes is 0:
-            retval = 'empty'
-        else:
-            l = floor(log(bytes, 1024))
-            size = bytes / pow(1024, l)
-            unit = ['bytes', 'kb', 'mb', 'gb', 'tb', 'pb', 'eb', 'zb', 'yb'][int(l)]
-            retval = "%.2f%s" % (size, unit)
+        retval = file_size_format(bytes)
         return retval
