@@ -27,6 +27,8 @@ when the message is being sent [#sender]_.
 Resources
 =========
 
+- Documentation:
+  https://groupserver.readthedocs.org/projects/gsgrouplistemailhtml
 - Code repository:
   https://github.com/groupserver/gs.group.list.email.html
 - Questions and comments to
