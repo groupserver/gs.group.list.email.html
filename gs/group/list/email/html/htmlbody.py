@@ -13,6 +13,7 @@
 #
 ############################################################################
 from __future__ import absolute_import, unicode_literals, print_function
+from operator import attrgetter
 from xml.sax.saxutils import escape
 from zope.cachedescriptors.property import Lazy
 from gs.group.messages.post.text.splitmessage import split_message
@@ -33,6 +34,7 @@ class HTMLBody(object):
             raise(ValueError('"originalText" argument required'))
         self.originalText = originalText
         self.matchers = [boldMatcher, emailMatcher, wwwMatcher, uriMatcher]
+        sorted(self.matchers, key=attrgetter('weight'))
 
     def __iter__(self):
         '''The marked-up lines in the main body'''
