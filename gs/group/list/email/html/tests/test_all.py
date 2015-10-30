@@ -14,9 +14,8 @@
 ############################################################################
 from __future__ import absolute_import, unicode_literals
 from unittest import TestSuite, main as unittest_main
-from gs.group.list.email.html.tests.htmlbody import (TestHTMLBody, )
-from gs.group.list.email.html.tests.message import (TestMessage)
-testCases = (TestHTMLBody, TestMessage, )
+from gs.group.list.email.html.tests.message import (TestMessage, )
+testCases = (TestMessage, )
 
 
 def load_tests(loader, tests, pattern):
