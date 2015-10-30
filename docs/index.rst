@@ -12,10 +12,6 @@
 .. _Creative Commons Attribution-Share Alike 4.0 International License:
     http://creativecommons.org/licenses/by-sa/4.0/
 
-The email messages that GroupServer_ sends from a group are
-different from what is received. This product supplies a message
-template for rendering a post in HTML.
-
 Contents:
 
 .. toctree::
@@ -24,6 +20,12 @@ Contents:
    message
    adaptor
    HISTORY
+
+The email messages that GroupServer_ sends from a group are
+different from what is received. This product supplies a :ref:`a
+message template <msg>` for rendering a post in HTML, and
+:ref:`an adaptor <adaptor>` for displaying the HTML version of
+the post in an email message.
 
 Resources
 =========

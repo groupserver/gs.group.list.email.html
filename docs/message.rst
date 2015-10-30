@@ -1,3 +1,5 @@
+.. _msg:
+
 Message template
 ================
 
