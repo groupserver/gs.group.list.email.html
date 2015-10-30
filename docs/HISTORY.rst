@@ -6,6 +6,15 @@ TODO: 2.0.0 (yyyy-mm-dd)
 
 * Using the HTML form of an email if present
 
+1.2.0 (2015-10-30)
+------------------
+
+* Moving the ``HTMLBody`` and ``Matcher`` classes to
+  `gs.group.messages.text`_
+
+.. _gs.group.messages.text:
+   https://github.com/groupserver/gs.group.messages.text
+
 1.1.4 (2015-10-13)
 ------------------
 
