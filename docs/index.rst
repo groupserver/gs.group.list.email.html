@@ -23,7 +23,6 @@ Contents:
 
    message
    adaptor
-   htmlbody
    HISTORY
 
 Resources
