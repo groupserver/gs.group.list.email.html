@@ -28,7 +28,7 @@ Resources
 =========
 
 - Documentation:
-  https://groupserver.readthedocs.org/projects/gsgrouplistemailhtml
+  https://groupserver.readthedocs.io/projects/gsgrouplistemailhtml
 - Code repository:
   https://github.com/groupserver/gs.group.list.email.html
 - Questions and comments to
